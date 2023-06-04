@@ -1,4 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { createAction } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 axios.defaults.baseURL = 'https://64023309302b5d671c3586c1.mockapi.io/';
@@ -19,3 +20,7 @@ export const getUsers = createAsyncThunk(
     }
   }
 );
+
+export const follow = createAction('users/folow', id => ({
+  payload: id,
+}));

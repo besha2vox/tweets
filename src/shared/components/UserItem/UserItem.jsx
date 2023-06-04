@@ -1,4 +1,9 @@
 import PropTypes from 'prop-types';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
+
+import { follow } from 'redux/users/operations';
+import { selectFolowings } from 'redux/users/selectors';
 
 import Button from '../Button/Button';
 import image from 'images/picture.png';
@@ -11,9 +16,17 @@ import {
   AvatarWrapper,
 } from './UserItem.styled';
 
-const UserItem = ({ user, tweets, folowers, avatar, id }) => {
+const UserItem = ({ user, tweets, followers, avatar, id }) => {
+  const [isFollowing, setIsFollowing] = useState(false);
+  const folowings = useSelector(selectFolowings);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    setIsFollowing(folowings.includes(id));
+  }, [folowings, id]);
+
   const handleClick = () => {
-    console.log('KURWA');
+    dispatch(follow(id));
   };
 
   return (
@@ -29,9 +42,13 @@ const UserItem = ({ user, tweets, folowers, avatar, id }) => {
           <img src={avatar} alt="user" />
         </AvatarWrapper>
         <p>{tweets} TWITS</p>
-        <p>{folowers} FOLOWERS</p>
+        <p>{isFollowing ? followers + 1 : followers} FOLOWERS</p>
       </UserInfoWrapper>
-      <Button text="FOLOWING" handleClicker={handleClick} isFolowing={false} />
+      <Button
+        text={isFollowing ? 'FOLLOWING' : 'FOLLOW'}
+        handleClicker={handleClick}
+        isFollowing={isFollowing}
+      />
     </UserItemWrapper>
   );
 };
@@ -39,7 +56,7 @@ const UserItem = ({ user, tweets, folowers, avatar, id }) => {
 UserItem.propTypes = {
   user: PropTypes.string.isRequired,
   tweets: PropTypes.number.isRequired,
-  folowers: PropTypes.number.isRequired,
+  followers: PropTypes.number.isRequired,
   avatar: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
 };

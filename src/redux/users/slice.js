@@ -1,11 +1,11 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
-import { getUsers } from './operations';
+import { getUsers, follow } from './operations';
 
 const initialState = {
   items: [],
   isLoading: false,
   error: null,
-  folowing: [],
+  followings: [],
 };
 
 const usersSlice = createSlice({
@@ -14,7 +14,15 @@ const usersSlice = createSlice({
   extraReducers: builder => {
     builder
       .addCase(getUsers.fulfilled, (state, { payload }) => {
-        state.items = payload;
+        state.items.push(...payload);
+      })
+      .addCase(follow, (state, { payload }) => {
+        if (state.followings.includes(payload)) {
+          const indx = state.followings.findIndex(el => el === payload);
+          state.followings.splice(indx, 1);
+        } else {
+          state.followings.push(payload);
+        }
       })
       .addMatcher(isAnyOf(getUsers.pending), state => {
         state.isLoading = true;

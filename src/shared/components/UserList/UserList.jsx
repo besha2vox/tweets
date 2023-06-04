@@ -13,12 +13,12 @@ const UserList = () => {
     <>
       {!isLoading && !!users.length && (
         <UsersList>
-          {users.map(({ user, tweets, folowers, avatar, id }) => (
+          {users.map(({ user, tweets, followers, avatar, id }) => (
             <UserItem
               key={id}
               user={user}
               tweets={tweets}
-              folowers={folowers}
+              followers={followers}
               avatar={avatar}
               id={id}
             />

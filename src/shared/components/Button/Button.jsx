@@ -5,12 +5,17 @@ import { Btn } from './Button.styled';
 const Button = ({
   text,
   handleClicker,
-  isFolowing = false,
+  isFollowing = false,
   children,
   isDisabled = false,
 }) => {
   return (
-    <Btn disabled={isDisabled} type="button" onClick={handleClicker}>
+    <Btn
+      isFollowing={isFollowing}
+      disabled={isDisabled}
+      type="button"
+      onClick={handleClicker}
+    >
       {text}
       {children}
     </Btn>
@@ -20,7 +25,7 @@ const Button = ({
 Button.propTypes = {
   text: PropTypes.string.isRequired,
   handleClicker: PropTypes.func.isRequired,
-  isFolowing: PropTypes.bool,
+  isFollowing: PropTypes.bool,
   isDisabled: PropTypes.bool,
   children: PropTypes.node,
 };

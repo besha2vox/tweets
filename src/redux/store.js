@@ -23,7 +23,7 @@ const middleware = [
 const usersPersistConfig = {
   key: 'users',
   storage,
-  whitelist: ['folowwing'],
+  whitelist: ['followings'],
 };
 
 export const store = configureStore({
