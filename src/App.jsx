@@ -1,17 +1,19 @@
+import { Routes, Route } from 'react-router-dom';
+import { lazy } from 'react';
+
+import SharedLayout from 'shared/components/SharedLayout/';
+import HomePage from 'pages/HomePage';
+
 const App = () => {
+  const TweetsPage = lazy(() => import('pages/TweetsPage'));
+
   return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101',
-      }}
-    >
-      Tweets
-    </div>
+    <Routes>
+      <Route path="/" element={<SharedLayout />}>
+        <Route index element={<HomePage />} />
+        <Route path="/users" element={<TweetsPage />} />
+      </Route>
+    </Routes>
   );
 };
 
