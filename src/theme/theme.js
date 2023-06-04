@@ -15,8 +15,9 @@ export const theme = {
     secondary: '#EBD8FF',
     accent: '#5CD3A8',
   },
-  backgraund: {
+  background: {
     primary: '#FFFFFF',
+    secondary: '#EBD8FF',
     accent: '#5CD3A8',
     gradient:
       'linear-gradient(114.99deg, #471CA9 -0.99%, #5736A3 54.28%, #4B2A99 78.99%)',

@@ -2,7 +2,7 @@ import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import { getUsers } from './operations';
 
 const initialState = {
-  users: [],
+  items: [],
   isLoading: false,
   error: null,
   folowing: [],
@@ -14,7 +14,7 @@ const usersSlice = createSlice({
   extraReducers: builder => {
     builder
       .addCase(getUsers.fulfilled, (state, { payload }) => {
-        state.users = payload;
+        state.items = payload;
       })
       .addMatcher(isAnyOf(getUsers.pending), state => {
         state.isLoading = true;

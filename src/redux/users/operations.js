@@ -1,5 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import instance from 'api/apiDefault';
+import axios from 'axios';
+
+axios.defaults.baseURL = 'https://64023309302b5d671c3586c1.mockapi.io/';
 
 export const getUsers = createAsyncThunk(
   'users/getUsers',
@@ -10,9 +12,8 @@ export const getUsers = createAsyncThunk(
     }).toString();
 
     try {
-      const response = await instance.get(`users?${searchParams}`);
-      console.log({ response });
-      return response;
+      const response = await axios.get(`users?${searchParams}`);
+      return response.data;
     } catch (error) {
       return rejectWithValue(error.message);
     }
