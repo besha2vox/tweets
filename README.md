@@ -17,7 +17,6 @@ This project was created with
 [Create React App](https://github.com/facebook/create-react-app).
 
 __Technology Stack:__ React.js, React-Router-Dom, React-Loader-spinner, React-Redux, Redux-Toolkit, Axios, Styled-Cmponent, GitHub-Pages, MockAPI. <br/>
-[ScreenCast](https://drive.google.com/file/d/18NCuH6PcjQYsLj3x-WrKDucd4ZQPg1zP/view?usp=sharing)
 
   
   
@@ -30,6 +29,8 @@ __Technology Stack:__ React.js, React-Router-Dom, React-Loader-spinner, React-Re
 2. You can choose which users to show (All/followed/unfollowed).
 3. You can change the following status of the user, the number of his followers will also be changed.
 4. 3 users are loaded on the page with each click on the "Next" button.
+
+[ScreenCast](https://drive.google.com/file/d/18NCuH6PcjQYsLj3x-WrKDucd4ZQPg1zP/view?usp=sharing)
 
 ## Problems encountered:
 
