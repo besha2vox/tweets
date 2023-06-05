@@ -18,10 +18,18 @@ export const Btn = styled.button`
     isFollowing ? theme.background.accent : theme.background.secondary};
   border-radius: 10.3108px;
   box-shadow: ${({ theme }) => theme.boxShadows.secondary};
-  transition: box-shadow 300ms ${({ theme }) => theme.transition.main};
+
+  transition-property: box-shadow, background-color;
+  transition-duration: 300ms;
+  transition-timing-function: ${({ theme }) => theme.transition.main};
   overflow: hidden;
 
-  &:hover {
+  &:hover,
+  &.active {
     box-shadow: ${({ theme }) => theme.boxShadows.secondaryInsert};
+  }
+
+  &.active {
+    background-color: ${({ theme }) => theme.background.accent};
   }
 `;

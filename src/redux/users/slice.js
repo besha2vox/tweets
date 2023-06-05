@@ -1,11 +1,11 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
-import { getUsers, follow } from './operations';
+import { getUsers, following } from './operations';
 
 const initialState = {
   items: [],
+  totalHints: 0,
   isLoading: false,
   error: null,
-  followings: [],
 };
 
 const usersSlice = createSlice({
@@ -14,27 +14,32 @@ const usersSlice = createSlice({
   extraReducers: builder => {
     builder
       .addCase(getUsers.fulfilled, (state, { payload }) => {
-        state.items.push(...payload);
-      })
-      .addCase(follow, (state, { payload }) => {
-        if (state.followings.includes(payload)) {
-          const indx = state.followings.findIndex(el => el === payload);
-          state.followings.splice(indx, 1);
-        } else {
-          state.followings.push(payload);
+        state.totalHints = payload.totalHints;
+
+        if (payload.page === 1) {
+          state.items = payload.data;
+          return;
         }
+        state.items.push(...payload.data);
       })
-      .addMatcher(isAnyOf(getUsers.pending), state => {
+      .addCase(following.fulfilled, (state, { payload }) => {
+        const indx = state.items.findIndex(item => item.id === payload.id);
+        state.items.splice(indx, 1, payload);
+      })
+      .addMatcher(isAnyOf(getUsers.pending, following.pending), state => {
         state.isLoading = true;
       })
-      .addMatcher(isAnyOf(getUsers.fulfilled), state => {
+      .addMatcher(isAnyOf(getUsers.fulfilled, following.fulfilled), state => {
         state.isLoading = false;
         state.error = null;
       })
-      .addMatcher(isAnyOf(getUsers.rejected), (state, { payload }) => {
-        state.isLoading = false;
-        state.error = payload;
-      });
+      .addMatcher(
+        isAnyOf(getUsers.rejected, following.rejected),
+        (state, { payload }) => {
+          state.isLoading = false;
+          state.error = payload;
+        }
+      );
   },
 });
 

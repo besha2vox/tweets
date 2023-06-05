@@ -11,7 +11,7 @@ const Header = () => {
               <NavigationLink to="/">Home</NavigationLink>
             </li>
             <li>
-              <NavigationLink to="/users">Users</NavigationLink>
+              <NavigationLink to="/tweets">Tweets</NavigationLink>
             </li>
           </NavigationList>
         </nav>

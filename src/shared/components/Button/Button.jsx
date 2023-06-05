@@ -8,9 +8,11 @@ const Button = ({
   isFollowing = false,
   children,
   isDisabled = false,
+  query,
 }) => {
   return (
     <Btn
+      className={query === text ? 'active' : ''}
       isFollowing={isFollowing}
       disabled={isDisabled}
       type="button"

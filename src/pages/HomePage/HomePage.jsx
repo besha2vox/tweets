@@ -8,7 +8,7 @@ const HomePage = () => {
         Select Users in the header to go to the page with a list of users, or
         click on the button below.
       </HomeText>
-      <HomeButton to="/users">Go to Users</HomeButton>
+      <HomeButton to="/tweets">Go to Users</HomeButton>
     </>
   );
 };

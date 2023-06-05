@@ -11,7 +11,7 @@ const App = () => {
     <Routes>
       <Route path="/" element={<SharedLayout />}>
         <Route index element={<HomePage />} />
-        <Route path="/users" element={<TweetsPage />} />
+        <Route path="/tweets" element={<TweetsPage />} />
       </Route>
     </Routes>
   );

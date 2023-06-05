@@ -1,9 +1,7 @@
 import PropTypes from 'prop-types';
-import { useDispatch, useSelector } from 'react-redux';
-import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 
-import { follow } from 'redux/users/operations';
-import { selectFolowings } from 'redux/users/selectors';
+import { following } from 'redux/users/operations';
 
 import Button from '../Button/Button';
 import image from 'images/picture.png';
@@ -16,17 +14,11 @@ import {
   AvatarWrapper,
 } from './UserItem.styled';
 
-const UserItem = ({ user, tweets, followers, avatar, id }) => {
-  const [isFollowing, setIsFollowing] = useState(false);
-  const folowings = useSelector(selectFolowings);
+const UserItem = ({ user, tweets, followers, avatar, id, isFollowing }) => {
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    setIsFollowing(folowings.includes(id));
-  }, [folowings, id]);
-
   const handleClick = () => {
-    dispatch(follow(id));
+    dispatch(following({ id, isFollowing: !isFollowing, followers }));
   };
 
   return (
@@ -41,8 +33,9 @@ const UserItem = ({ user, tweets, followers, avatar, id }) => {
         <AvatarWrapper>
           <img src={avatar} alt="user" />
         </AvatarWrapper>
+        <p>{user}</p>
         <p>{tweets} TWITS</p>
-        <p>{isFollowing ? followers + 1 : followers} FOLOWERS</p>
+        <p>{followers} FOLOWERS</p>
       </UserInfoWrapper>
       <Button
         text={isFollowing ? 'FOLLOWING' : 'FOLLOW'}

@@ -6,4 +6,6 @@ export const selectIsLoading = state => state.users.isLoading;
 
 export const selectError = state => state.users.error;
 
-export const selectFolowingList = state => state.users.folowing;
+export const selectTotalHints = state => state.users.totalHints;
+
+export const selectUsersLength = state => state.users.items.length;
