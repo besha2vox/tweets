@@ -12,7 +12,6 @@ import { getUsers } from 'redux/users/operations';
 import Button from 'shared/components/Button/Button';
 import UserList from 'shared/components/UserList/UserList';
 import { PageWrapper, LoaderWrapper, ButtonList } from './TweetsPage.styled';
-import { usersReducer } from 'redux/users/slice';
 
 const TweetsPage = () => {
   const [page, setPage] = useState(1);
